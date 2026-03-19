@@ -42,17 +42,19 @@ nodes_df = pd.read_csv(
     os.path.join(data_dir, "nodes.csv"),
     index_col=0,
     parse_dates=True,
-    sep="#",
-    quotechar="+",
-    engine="python",
+    dtype={"shared_capacity": np.float64,
+           "degree": np.float64,},
+    sep=";",
+    low_memory=False,
+    # engine="python",
 )
 nodes_df = (
     nodes_df.reset_index()
     .groupby("node")
     .agg(
         {
+            "timestamp": lambda x: (x.max() - x.min()).days + 1,
             "shared_capacity": "mean",
-            "timestamp": lambda x: (x.max() - x.min()).days,
             "degree": "mean",
         }
     )
@@ -87,7 +89,7 @@ if len(addresses) < 1 or len(geojson) < 1:
 
 
 geo_data = []
-geo_cols = ["city", "region", "country", "latitude", "longitude"]
+geo_cols = ["region", "country", "latitude", "longitude"]
 
 for n in tqdm(nodes_df["node"]):
     try:
@@ -102,7 +104,6 @@ for n in tqdm(nodes_df["node"]):
             geo["longitude"] = float(lon)
         geo_data.append(
             {
-                "city": geo["city"],
                 "region": geo["region"],
                 "country": geo["country"],
                 "latitude": geo["latitude"],
@@ -112,7 +113,6 @@ for n in tqdm(nodes_df["node"]):
     except:  # noqa: E722
         geo_data.append(
             {
-                "city": np.nan,
                 "region": np.nan,
                 "country": np.nan,
                 "latitude": np.nan,
@@ -123,4 +123,4 @@ for n in tqdm(nodes_df["node"]):
 geo_df = pd.DataFrame(geo_data)
 final_df = pd.concat([nodes_df, geo_df], axis=1)
 print(f"Number of items: {len(final_df)}")
-final_df.to_csv(os.path.join(data_dir, "geo_nodes.csv"), index=False)
+final_df.to_csv(os.path.join(data_dir, "geo_nodes.csv"), sep=";", index=False)

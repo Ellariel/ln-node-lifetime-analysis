@@ -87,7 +87,6 @@ df = pd.DataFrame(results)
 print(f"Number of items: {len(df)}")
 df.to_csv(
     os.path.join(data_dir, "nodes.csv"),
-    sep="#",
+    sep=";",
     index=False,
-    quotechar="+",
 )
