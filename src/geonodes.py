@@ -36,14 +36,15 @@ if "app" in base_dir:
 data_dir = os.path.abspath(os.path.join(base_dir, "..", "data"))
 
 print("data_dir:", data_dir)
-print(os.path.join(data_dir, "nodes.csv"))
 
 nodes_df = pd.read_csv(
     os.path.join(data_dir, "nodes.csv"),
     index_col=0,
     parse_dates=True,
-    dtype={"shared_capacity": np.float64,
-           "degree": np.float64,},
+    dtype={
+        "shared_capacity": np.float64,
+        "degree": np.float64,
+    },
     sep=";",
     low_memory=False,
     # engine="python",
@@ -53,7 +54,7 @@ nodes_df = (
     .groupby("node")
     .agg(
         {
-            "timestamp": lambda x: (x.max() - x.min()).days + 1,
+            "timestamp": lambda x: (x.max() - x.min()).days,
             "shared_capacity": "mean",
             "degree": "mean",
         }
@@ -122,5 +123,5 @@ for n in tqdm(nodes_df["node"]):
 
 geo_df = pd.DataFrame(geo_data)
 final_df = pd.concat([nodes_df, geo_df], axis=1)
-print(f"Number of items: {len(final_df)}")
+print(f"Number of items: {len(final_df)}")  # 39159
 final_df.to_csv(os.path.join(data_dir, "geo_nodes.csv"), sep=";", index=False)

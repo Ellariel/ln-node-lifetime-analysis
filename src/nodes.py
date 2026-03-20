@@ -77,14 +77,14 @@ for f in tqdm(glob.glob(os.path.join(data_dir, "*.json"))):
                 for k in [
                     "features",
                     "rgb_color",
-                    "out_degree",
-                    "in_degree",
+                    # "out_degree",
+                    # "in_degree",
                 ]
             ]
             results.append(d)
     # break
 df = pd.DataFrame(results)
-print(f"Number of items: {len(df)}")
+print(f"Number of items: {len(df)}")  # 2239066
 df.to_csv(
     os.path.join(data_dir, "nodes.csv"),
     sep=";",

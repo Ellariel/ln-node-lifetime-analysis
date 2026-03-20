@@ -32,7 +32,7 @@ gdp_cap = gdp_cap[["country_name", "country_id", "gdp_cap"]]
 
 code2 = (
     pd.read_csv(
-        os.path.join(data_dir, "wikipedia-iso-country-codes.csv"), # low_memory=False
+        os.path.join(data_dir, "wikipedia-iso-country-codes.csv"),  # low_memory=False
     ).rename(
         columns={
             "English short name lower case": "country_name",
@@ -52,4 +52,5 @@ df["log_lifetime"] = log_transform(df["lifetime"])
 df["log_mean_shared_capacity"] = log_transform(df["mean_shared_capacity"])
 
 f_data = pd.merge(df, c_data, on=["country"], how="left").drop(["node"], axis=1)
+print(f"Number of items: {len(f_data)}")  # 39159
 f_data.to_csv(os.path.join(results_dir, "data.csv"), index=True)
