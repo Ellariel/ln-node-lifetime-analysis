@@ -1,1 +1,1 @@
-# ln-node-lifetime-analysis
+# Scripts and data for the pper 'Shared Channel Capacity and Node Lifetime: An Empirical Study of the Lightning Network'
