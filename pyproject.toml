@@ -1,7 +1,7 @@
 [project]
 name = "ln-node-lifetime-analysis"
 version = "0.1.0"
-description = "Scripts and data for the pper 'Shared Channel Capacity and Node Lifetime: An Empirical Study of the Lightning Network'"
+description = "Scripts and data for the paper 'Shared Channel Capacity and Node Lifetime: An Empirical Study of the Lightning Network'"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
