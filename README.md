@@ -42,7 +42,7 @@ All input data, intermediate outputs, and final results should be stored in the 
 #### Citation
 
 ```latex
-Danila Valko and Jorge Marx Gómez (2026). Shared channel capacity and node lifetime: An empirical study of the lightning network. https://doi.org/
+Danila Valko and Jorge Marx Gómez (2026). Shared channel capacity and node lifetime: An empirical study of the lightning network. arXiv. https://doi.org/10.48550/arXiv.2606.20566
 ```
 
 ```latex
@@ -52,8 +52,8 @@ author={Danila Valko and Jorge {Marx G\'omez}},
 year={2026},
 publisher={arXiv},
 howpublished={arXiv},
-doi={10.48550/arXiv.},
-eprint={},
+eprint={2606.20566},
+doi={10.48550/arXiv.2606.20566},
 archivePrefix={arXiv},
 primaryClass={cs.NI},
 }
