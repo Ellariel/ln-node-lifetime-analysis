@@ -1,0 +1,21 @@
+[project]
+name = "ln-node-lifetime-analysis"
+version = "0.1.0"
+description = "Scripts and data for the paper 'Shared Channel Capacity and Node Lifetime: An Empirical Study of the Lightning Network'"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "ipykernel",
+    "numpy",
+    "pandas",
+    "networkx",
+    "swiftshadow",
+    "requests",
+    "tqdm",
+    "matplotlib",
+    "seaborn",
+    "openpyxl",
+    "statsmodels",
+    "scipy",
+    "apatools@git+https://github.com/ellariel/apatools@development",
+]
